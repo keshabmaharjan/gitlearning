@@ -3,3 +3,4 @@ git clone https://github.com/keshabmaharjan/gitlearning.git
 
 
 from the git front end.
+some one other who have access changed the git then what happens
