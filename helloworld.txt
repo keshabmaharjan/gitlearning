@@ -1,5 +1,255 @@
---to clone the repository to the desktop
+Step 1: First this we need to create the repository in the github.com clicking little plus sign in the 
+right hand corner of the web page.
+
+Step 2: Then be in the appropriate drive where you want to clone the repository into your local machine
+just in my case it is suppose to be in "C:\Users\dell>"
+Command 1:
+C:\Users\dell>git clone https://github.com/keshabmaharjan/gitlearning.git
+Cloning into 'gitlearning'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+Checking connectivity... done.
+--this command will clone the repository of the remote to your local machine folder "C:\Users\dell\"
+
+--check if there is folder or not 
+C:\Users\dell>cd gitlearning
+
+--check with the dir command , and you will see there is the empty repository or the folder.
+C:\Users\dell\gitlearning>dir
+ Volume in drive C has no label.
+ Volume Serial Number is DE8F-4758
+
+ Directory of C:\Users\dell\gitlearning
+
+05/30/2020  01:54 PM    <DIR>          .
+05/30/2020  01:54 PM    <DIR>          ..
+05/30/2020  01:54 PM                13 README.md
+               1 File(s)             13 bytes
+               2 Dir(s)   3,191,701,504 bytes free
+
+
+--creating one file called helloworld.txt CTRL+Z will help to save the file.
+C:\Users\dell\gitlearning>copy con helloworld.txt
 git clone https://github.com/keshabmaharjan/gitlearning.git
+^Z
+        1 file(s) copied.
+
+--checking if the file is created or not.
+C:\Users\dell\gitlearning>dir
+ Volume in drive C has no label.
+ Volume Serial Number is DE8F-4758
+
+ Directory of C:\Users\dell\gitlearning
+
+05/30/2020  01:58 PM    <DIR>          .
+05/30/2020  01:58 PM    <DIR>          ..
+05/30/2020  01:58 PM                61 helloworld.txt   <--- yes there is file created now.
+05/30/2020  01:54 PM                13 README.md
+               2 File(s)             74 bytes
+               2 Dir(s)   3,182,252,032 bytes free
 
 
-from the git front end.
+--adding file to the stagging before we send it to the remote. 
+C:\Users\dell\gitlearning>git add helloworld.txt
+
+--now commiting the file with the message of "git clone command" <- writing these sort of msg is for our refrence.
+C:\Users\dell\gitlearning>git commit -m "git clone command"
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: empty ident name (for <(null)>) not allowed
+
+--giving the credentials
+C:\Users\dell\gitlearning>git config --global user.email "keshabmaharjan@gmail.c
+om"
+
+--giving username
+C:\Users\dell\gitlearning>git config --global user.name "Keshab Maharjan"
+
+--now trying once again with the git commit
+C:\Users\dell\gitlearning>git commit -m "git clone command"
+[master 2f69489] git clone command
+ 1 file changed, 1 insertion(+)
+ create mode 100644 helloworld.txt
+
+and that is the success !!!
+
+--------------------------------------------------------------------------------
+--we can check the status just by the git status.
+-------------------------------------------------
+C:\Users\dell\gitlearning>git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+
+----------------------------------
+--git push, as name suggests pushes the content being change to the remote repository.
+-----------------------------------
+C:\Users\dell\gitlearning>git push
+Fatal: AggregateException encountered.
+Username for 'https://github.com': keshabmaharjan
+Password for 'https://keshabmaharjan@github.com':
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 345 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/keshabmaharjan/gitlearning.git
+   ac58bc8..2f69489  master -> master
+--we may need to provide the credential before we push the changes to the remote repo.
+
+------------------------------------------
+--git pull is the another command that helps to pull the changes from the remote repository.
+------------------------------------------------
+C:\Users\dell\gitlearning>git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/keshabmaharjan/gitlearning
+   2f69489..49e94eb  master     -> origin/master
+Updating 2f69489..49e94eb
+Fast-forward
+ helloworld.txt | 1 +
+ 1 file changed, 1 insertion(+)
+--here 1 + depicts us there is 1 insertion in the remote computer or other user changes 
+--with one line.
+-----------------------------------------------------------
+--similarly we changes to the desktop file as well. 
+--now in this scenario 
+-- we changes in our desktop file or lets say local repository
+--other user changed in the remote repository
+--in these cases conflict arise in the file.
+--so after our changes in file we again try to fire the git pull command 
+-- and result of same we get below error. 
+
+C:\Users\dell\gitlearning>git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/keshabmaharjan/gitlearning
+   49e94eb..7874b68  master     -> origin/master
+Updating 49e94eb..7874b68
+error: Your local changes to the following files would be overwritten by merge:
+        helloworld.txt
+Please commit your changes or stash them before you can merge.
+Aborting
+
+--Now we added changed lines to the file.
+C:\Users\dell\gitlearning>git add helloworld.txt
+
+--with git commit command we added the 5 extra things inthe file.
+C:\Users\dell\gitlearning>git commit -m "added the line from the desktop"
+[master 935c073] added the line from the desktop
+ 1 file changed, 5 insertions(+)
+
+--Now we also trying to pull the changes in the remote. [after changing manuall in the git page and commiting]
+--we result into conflict
+--merge conflict
+C:\Users\dell\gitlearning>git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/keshabmaharjan/gitlearning
+   7874b68..8f4c7a8  master     -> origin/master
+Auto-merging helloworld.txt
+CONFLICT (content): Merge conflict in helloworld.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+--to show the changes that has been added in both desktop and remote 
+-- we edited the changes 
+--changes between <<< and HEAD is our changes 
+--changes between ==== and  >>>> are the remote or other users changes.
+--we then remove the <<<< HEAD ========= AND >>>> AND set the script or document as we 
+--want in final and make the git commit as below.
+
+C:\Users\dell\gitlearning>git commit -m "changes of desktop and remote together"
+
+[master eebf776] changes of desktop and remote together
+
+--finally submiting to the remote as well.
+C:\Users\dell\gitlearning>git push
+Fatal: HttpRequestException encountered.
+Username for 'https://github.com': keshabmaharjan
+Password for 'https://keshabmaharjan@github.com':
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 894 bytes | 0 bytes/s, done.
+Total 6 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/keshabmaharjan/gitlearning.git
+   8f4c7a8..eebf776  master -> master
+
+-----------------------------------------------------------------------------------
+--another  useful command it the git log
+--this gives the history of the changes and also with the message
+----------------------------------------
+C:\Users\dell\gitlearning>git log
+commit eebf776dd5e6e5a457127ce2160f6abc1293b1ea
+Merge: 935c073 8f4c7a8
+Author: Keshab Maharjan <keshabmaharjan@gmail.com>
+Date:   Sat May 30 15:59:45 2020 +0545
+
+    changes of desktop and remote together
+
+commit 8f4c7a87e9e708236a7792d09385f091b2a2d014
+Author: keshabmaharjan <keshabmaharjan@gmail.com>
+Date:   Sat May 30 15:54:46 2020 +0545
+
+    Update helloworld.txt
+
+commit 935c07300346c6223732c1a51b6ba81404b28cbe
+Author: Keshab Maharjan <keshabmaharjan@gmail.com>
+Date:   Sat May 30 15:53:38 2020 +0545
+
+    added the line from the desktop
+
+commit 7874b68cc2062438ba713c841ea6b628e4fbf49d
+Author: keshabmaharjan <keshabmaharjan@gmail.com>
+Date:   Sat May 30 15:51:26 2020 +0545
+
+    Update helloworld.txt
+
+commit 49e94eb22e7f52107fa83d2356dd64606eb3b11d
+Author: keshabmaharjan <keshabmaharjan@gmail.com>
+Date:   Sat May 30 15:44:17 2020 +0545
+
+    Update helloworld.txt
+
+commit 2f694891a23b016ae3372868ff654ec22368fff5
+Author: Keshab Maharjan <keshabmaharjan@gmail.com>
+Date:   Sat May 30 14:03:45 2020 +0545
+
+    git clone command
+
+commit ac58bc8894b1807ebc7544108b98af153738f575
+Author: keshabmaharjan <keshabmaharjan@gmail.com>
+Date:   Sat May 30 13:26:41 2020 +0545
+
+    Initial commit
+
+---------------------------------------------------------
+--git reset is another command which will reset the doc to that version 
+-- in scenario below we reset the doc to the version stored by 7874b68cc2062438ba713c841ea6b628e4fbf
+---------------------------------------------------------
+C:\Users\dell\gitlearning>git reset --hard 7874b68cc2062438ba713c841ea6b628e4fbf
+49d
+HEAD is now at 7874b68 Update helloworld.txt
+
