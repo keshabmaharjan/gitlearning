@@ -1,2 +1,5 @@
 --to clone the repository to the desktop
 git clone https://github.com/keshabmaharjan/gitlearning.git
+
+
+from the git front end.
