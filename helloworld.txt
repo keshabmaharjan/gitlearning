@@ -3,5 +3,18 @@ git clone https://github.com/keshabmaharjan/gitlearning.git
 
 --commiting the git and message will save the log for the future.
 git commit -m "message"
+this line is from the desktop computer.
+from the git front end.
+some one other who have access changed the git then what happens
+
+--my changes in desktop
+<<<<<<< HEAD
+--commiting the git and message will save the log for the future.
+git commit -m "message"
 
 this line is from the desktop computer.
+======= --from the remote between === and >>> 
+
+from the git front end.
+some one other who have access changed the git then what happens
+>>>>>>> 8f4c7a87e9e708236a7792d09385f091b2a2d014
